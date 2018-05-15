@@ -15,7 +15,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             return history.listen(({pathname, query}) => {
-                if (pathname === '/trade') {
+                if (pathname === '/trade' && sessionStorage.getItem(config.KEY)) {
                     dispatch({
                         type:'assignCode',
                         code:query.code
@@ -42,17 +42,23 @@ export default {
                     offset:offset
                 }
                 const {data} = yield call(TradeServices.order,post_data);
-                if(data.信息 === 'error'){
-                    window.alert('交易失败')
-                    // text = '交易失败';
-                    // Toast.info('交易失败');
-                }else{
-                    window.alert(data.信息)
-                    // Toast.info(data.信息)
+                if(data){
+                    if(data.信息 === 'error'){
+                        window.alert('交易失败')
+                        // text = '交易失败';
+                        // Toast.info('交易失败');
+                    }else{
+                        window.alert(data.信息)
+                        // Toast.info(data.信息)
+                    }
                 }
             }
             if(price_type === 2){
-                prompt('买', '当前限价:100(需低于限价)',
+                let title = direction === 0 ? "买" : "卖";
+                if(offset != 0 ){
+                    title = title === "买" ? "平卖" : "平买";
+                }
+                prompt(title, '',
                     [
                         {
                             text: '取消',

@@ -1,4 +1,5 @@
 import * as DiscoverServices from '../services/discover'
+import config from "../../../utils/config";
 
 let loading = false;
 
@@ -12,7 +13,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             return history.listen(({pathname, query}) => {
-                if (pathname === '/discover') {
+                if (pathname === '/discover' && sessionStorage.getItem(config.KEY)) {
                     dispatch({
                         type: 'getList'
                     })
@@ -25,11 +26,13 @@ export default {
         * getList({page = 1}, {call, put,select}) {
             const {data} = yield call(DiscoverServices.getList, {type: '发现', page: page, pageSize: 10})
             loading = false;
-            yield put({
-                type: 'assignList',
-                data: data.Rows,
-                page: page
-            })
+            if(data){
+                yield put({
+                    type: 'assignList',
+                    data: data.Rows,
+                    page: page
+                })
+            }
         },
         * loadMore({}, {call, put, select}) {
             if (!loading) {

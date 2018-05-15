@@ -27,9 +27,11 @@ export default {
   effects: {
     *checkKey({key},{call}){
         const {data} = yield call(CommonServies.checkKey,{key:key});
-        if(!data.状态){
-            Toast.info('账号异常，请重新登录',2);
-            router.push('/login')
+        if(data){
+            if(!data.状态){
+                Toast.info('账号异常，请重新登录',2);
+                router.push('/login')
+            }
         }
     }
   },

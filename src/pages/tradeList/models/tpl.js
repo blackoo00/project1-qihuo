@@ -1,6 +1,7 @@
 import * as TradeListServices from '../services/tpl'
 import * as TradeServices from "../../trade/services/trade";
 import {Toast, Modal} from 'antd-mobile'
+import config from "../../../utils/config";
 
 const alert = Modal.alert
 
@@ -20,7 +21,7 @@ export default {
     subscriptions: {
         setup({dispatch, history}) {
             return history.listen(({pathname, query}) => {
-                if (pathname === '/tradeList') {
+                if (pathname === '/tradeList' && sessionStorage.getItem(config.KEY)) {
                     dispatch({
                         type: 'getPositionList'
                     })
@@ -38,19 +39,20 @@ export default {
                 offset: offset
             }
             const {data} = yield call(TradeServices.order, post_data);
-            if (data.信息 === 'error') {
-                // alert('非交易时间不可交易',
-                //     <div>非交易时间不可交易<br/><br/>【沪金的买入时间】<br/>09:00 - 10:15<br/>10:30 - 11:30<br/>13:30 - 14:55<br/>21:00 - 02:25<br/>（周末节假日休市）</div>,
-                //     [
-                //         {
-                //             text:'确定',onPress:() => {}
-                //         }
-                //     ])
-                Toast.info('交易失败');
-            } else {
-                Toast.info(data.信息)
+            if(data){
+                if (data.信息 === 'error') {
+                    // alert('非交易时间不可交易',
+                    //     <div>非交易时间不可交易<br/><br/>【沪金的买入时间】<br/>09:00 - 10:15<br/>10:30 - 11:30<br/>13:30 - 14:55<br/>21:00 - 02:25<br/>（周末节假日休市）</div>,
+                    //     [
+                    //         {
+                    //             text:'确定',onPress:() => {}
+                    //         }
+                    //     ])
+                    Toast.info('交易失败');
+                } else {
+                    Toast.info(data.信息)
+                }
             }
-
         },
         * ping({direction, code, num}, {put, call}) {
             const {data} = yield call(TradeServices.getOffect, {pz: code, fx: direction});

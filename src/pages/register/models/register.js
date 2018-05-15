@@ -55,7 +55,9 @@ export default {
     effects: {
         * sendCode({phone}, {put, call}) {
             const {data} = yield call(RegisterServices.sendCode, {phone: phone});
-            Toast.info(data.信息,1);
+            if(data){
+                Toast.info(data.信息,1);
+            }
         },
         *validate({},{put,call,select}){
             yield put({
@@ -127,9 +129,13 @@ export default {
             }
             const {data} = yield call(RegisterServices.submit, formData);
             Toast.hide();
-            Toast.info(data.信息,1);
-            if(data.状态){
-                router.push('/login')
+            if(data){
+                Toast.info(data.信息,1);
+                if(data.状态){
+                    router.push('/login')
+                }
+            }else{
+                Toast.info('注册异常')
             }
         },
         * getProvince({}, {call, put}) {

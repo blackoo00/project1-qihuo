@@ -1,3 +1,5 @@
+import config from "../../../utils/config";
+
 export default {
     namespace: 'pay',
     state: {
@@ -7,7 +9,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({pathname,query}) => {
-                if(pathname === '/pay'){
+                if(pathname === '/pay' && sessionStorage.getItem(config.KEY)){
                     dispatch({
                         type:'assignType',
                         way:query.type

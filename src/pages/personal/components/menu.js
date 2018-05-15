@@ -11,6 +11,11 @@ const Example = () => {
                     资金明细
                     <i styleName="mod-arrow-r"></i>
                 </Link>
+                <Link to={'/capital'}>
+                    <i styleName="iconfont" data-icon="capital" style={{backgroundColor:'#bd2fe8'}}></i>
+                    账户明细
+                    <i styleName="mod-arrow-r"></i>
+                </Link>
             </div>
             <div styleName="mod-menu">
                 <Link to={'/myInfo'}>
@@ -23,16 +28,16 @@ const Example = () => {
                     我的红包
                     <i styleName="mod-arrow-r"></i>
                 </Link>
-                <Link to={'/union'}>
-                    <i styleName="iconfont" data-icon="invite" style={{backgroundColor:'#F16A33'}}></i>
-                    邀请好友
-                    <i styleName="mod-arrow-r"></i>
-                </Link>
-                <Link to={'/investor'}>
-                    <i styleName="iconfont" data-icon="apply" style={{backgroundColor:'#D976A2'}}></i>
-                    申请投资人
-                    <i styleName="mod-arrow-r"></i>
-                </Link>
+                {/*<Link to={'/union'}>*/}
+                    {/*<i styleName="iconfont" data-icon="invite" style={{backgroundColor:'#F16A33'}}></i>*/}
+                    {/*邀请好友*/}
+                    {/*<i styleName="mod-arrow-r"></i>*/}
+                {/*</Link>*/}
+                {/*<Link to={'/investor'}>*/}
+                    {/*<i styleName="iconfont" data-icon="apply" style={{backgroundColor:'#D976A2'}}></i>*/}
+                    {/*申请投资人*/}
+                    {/*<i styleName="mod-arrow-r"></i>*/}
+                {/*</Link>*/}
             </div>
         </div>
     );

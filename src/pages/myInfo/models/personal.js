@@ -1,3 +1,4 @@
+import config from "../../../utils/config";
 
 export default {
     namespace: 'myInfo',
@@ -7,7 +8,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({pathname,query}) => {
-                if(pathname === '/myInfo'){
+                if(pathname === '/myInfo' && sessionStorage.getItem(config.KEY)){
                     dispatch({
                         type:'checkData'
                     })

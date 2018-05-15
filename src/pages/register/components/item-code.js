@@ -6,7 +6,7 @@ import React from 'react'
 
 class Item extends React.Component{
     state = {
-        seconds:10,
+        seconds:60,
         send_text:'获取验证码',
         can_send:true
     }

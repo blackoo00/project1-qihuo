@@ -20,12 +20,13 @@ export default {
     effects: {
         *passModify({values},{call,put}){
             const {data} = yield call(ModifyServices.passModify,values);
-            console.log(data);
-            Toast.info(data.信息);
-            if(data.状态){
-                router.push({
-                    pathname:'/myInfo'
-                })
+            if(data){
+                Toast.info(data.信息);
+                if(data.状态){
+                    router.push({
+                        pathname:'/myInfo'
+                    })
+                }
             }
         }
     },

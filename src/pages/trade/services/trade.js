@@ -6,11 +6,11 @@ import config from '../../../utils/config'
 * appapi/order
 * key
 * instrument 品种（参数名为 合约）
-* direction 方向 0 买 1 卖
+* direction 方向 0 买 1 卖 平买为1 平卖为0
 * offset
 *   0 开仓（点击 买 卖时 皆为 0）
-*   1平仓 点击平买 平卖 时候 得先调用平仓接口
-*   3平今 点击平买 平卖 时候 得先调用平仓接口
+*   1平今 点击平买 平卖 时候 得先调用平仓接口
+*   3平昨 点击平买 平卖 时候 得先调用平仓接口
 * volume 数量
 * */
 export function order(values){

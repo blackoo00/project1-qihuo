@@ -73,6 +73,10 @@ em, i, strong {
     content:'\e61e';
     font-family: iconfont;
 }
+.iconfont[data-icon="capital"]:before{
+    content:'\e604';
+    font-family: iconfont;
+}
 .iconfont[data-icon="my"]:before{
     content:'\e66a';
     font-family: iconfont;

@@ -4,10 +4,11 @@ import {connect} from 'dva'
 import Header from '../../../components/header/header'
 import Button from '../../../components/button/button'
 import {createForm} from 'rc-form'
-import {Toast,Picker} from 'antd-mobile'
+import {Toast,Picker,Modal} from 'antd-mobile'
 import router from 'umi/router'
 // import Link from 'umi/link'
 import config from '../../../utils/config'
+import qrcode from '../images/qrcode.png'
 
 const pickerData = [{label:'实盘',value:0},{label:'模拟',value:1}];
 
@@ -64,7 +65,7 @@ const Login = ({...rest}) => (
             </div>
             <div styleName="links">
                 <a href={"tel:"+config.SERVICE_TEL}>联系客服</a>
-                {/*<Link to="/forget">忘记密码</Link>*/}
+                <a onClick={rest.showQrcode}>扫码下载</a>
             </div>
         </div>
     </div>
@@ -75,6 +76,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
+    showQrcode:() => {
+        Modal.alert('', <img style={{width:'100%'}} src={qrcode}/>,
+            [
+            { text: '关闭', onPress: () => {} },
+        ])
+    },
     assignSev:(v) => {
         dispatch({
             type:'login/assignSev',

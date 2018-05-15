@@ -5,7 +5,8 @@ function alert(text){
     },1000)
 }
 // var k_url = 'http://192.168.1.3/hdl-test/test1';
-var k_url = 'http://www.i7quan.com/test/k.html';
+// var k_url = 'http://www.i7quan.com/test/k.html';
+var k_url = 'http://web.hdlkg.net/k.html';
 var work = $.connection.myHub;
 $.connection.hub.url = 'http://139.196.236.139:1818/lcc';
 var hub = $.connection.hub;

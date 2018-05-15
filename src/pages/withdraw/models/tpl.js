@@ -23,9 +23,11 @@ export default {
     effects: {
         *withdraw({money},{call,put}){
             const {data} = yield call(WithDrawServices.withdraw,{pass:sessionStorage.getItem(config.PASSWORD),money})
-            Toast.info(data.信息);
-            if(data.状态){
-                router.push({pathname:'/personal'})
+            if(data){
+                Toast.info(data.信息);
+                if(data.状态){
+                    router.push({pathname:'/personal'})
+                }
             }
         }
     },

@@ -16,11 +16,13 @@ export default {
     effects: {
         *LoginIn({values},{call}){
             const {data} = yield call(LoginServices.Login,values);
-            Toast.info(data.信息,1);
-            if(data.状态){
-                sessionStorage.setItem(config.KEY,data.key);
-                sessionStorage.setItem(config.PASSWORD,values.password);
-                router.push('/personal');
+            if(data){
+                Toast.info(data.信息,1);
+                if(data.状态){
+                    sessionStorage.setItem(config.KEY,data.key);
+                    sessionStorage.setItem(config.PASSWORD,values.password);
+                    router.push('/personal');
+                }
             }
         }
     },

@@ -17,9 +17,11 @@ export default {
     effects: {
         *submit({values},{call,put}){
             const {data} = yield call(IdentifyServices.submit,values);
-            Toast.info(data.信息)
-            if(data.状态){
-                router.push({pathname:'/myInfo'})
+            if(data){
+                Toast.info(data.信息)
+                if(data.状态){
+                    router.push({pathname:'/myInfo'})
+                }
             }
         }
     },
